@@ -1,4 +1,4 @@
-package main;
+package main.item.functionality;
 
 public interface Breakable {
     public boolean isBreakable();

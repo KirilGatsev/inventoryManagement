@@ -1,7 +1,6 @@
-package main;
+package main.item.impl;
 
-import main.testPackage.AbstractItem;
-import main.testPackage.Detail;
+import main.util.Detail;
 
 public class InventoryItem extends AbstractItem {
     private int id;
@@ -64,20 +63,26 @@ public class InventoryItem extends AbstractItem {
 
     @Override
     public void sellItem(int quantity) {
-        if(ensureQuantity(quantity)){
-            System.out.println("You have purchased " + quantity + " of item " +
-                    this.getName() + " for a total of " + calculateCost(quantity));
-            this.quantity -= quantity;
-        }else{
-            System.out.println("We currently have only " + this.quantity + " of item " + this.getName());
-        }
-    }
-
-     boolean ensureQuantity(int quantity){
-        return this.getQuantity() >= quantity;
+        System.out.println("You have purchased " + quantity + " of item " +
+                this.getName() + " for a total of " + calculateCost(quantity));
+        this.quantity -= quantity;
     }
 
     double calculateCost(int quantity){
         return this.getPrice() * quantity;
+    }
+
+    @Override
+    public String toString() {
+        return "InventoryItem{" +
+                "id=" + id +
+                ", quantity=" + quantity +
+                ", name='" + name + '\'' +
+                ", price=" + this.getPrice() +
+                ", details=" + details +
+                ", breakable=" + breakable +
+                ", perishable=" + perishable +
+                ", description='" + description + '\'' +
+                '}';
     }
 }

@@ -1,6 +1,6 @@
-package main;
+package main.item.impl;
 
-import main.testPackage.Detail;
+import main.util.Detail;
 
 import java.util.HashSet;
 
@@ -11,13 +11,13 @@ public class FragileItem extends InventoryItem {
         this.setId(id);
         this.setQuantity(quantity);
         this.name = name;
-        this.setCategory("Electronics");
+        this.setCategory("Fragile");
         this.details = new HashSet<>();
+        this.breakable = true;
+        this.perishable = false;
         this.addDetail(details);
         this.setPrice(price);
         this.description = description;
-        this.breakable = true;
-        this.perishable = false;
         this.weightInKg = weightInKg;
     }
 
@@ -25,15 +25,6 @@ public class FragileItem extends InventoryItem {
         return weightInKg;
     }
 
-    public void sellItem(int quantity, int percentage) {
-        if(super.ensureQuantity(quantity)){
-            System.out.println("You have purchased " + quantity + " of item " +
-                    this.getName() + " for a total of " + this.getPrice() * quantity);
-            this.setQuantity(this.getQuantity() - quantity);
-        }else{
-            System.out.println("We currently have only " + this.getQuantity() + " of item " + this.getName());
-        }
-    }
 
     private boolean aboveWeightThreshold(){
         return this.weightInKg >= 1.5;
@@ -47,5 +38,20 @@ public class FragileItem extends InventoryItem {
         }else{
             return priceBeforeTax + (priceBeforeTax * 0.2);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "FragileItem{" +
+                "id=" + getId() +
+                ", quantity=" + getQuantity() +
+                ", weightInKg=" + weightInKg +
+                ", name='" + name + '\'' +
+                ", price=" + this.getPrice() +
+                ", details=" + details +
+                ", breakable=" + breakable +
+                ", perishable=" + perishable +
+                ", description='" + description + '\'' +
+                '}';
     }
 }

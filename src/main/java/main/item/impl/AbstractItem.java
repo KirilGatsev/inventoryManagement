@@ -1,6 +1,7 @@
-package main.testPackage;
+package main.item.impl;
 
-import main.*;
+import main.item.functionality.*;
+import main.util.Detail;
 
 import java.util.Set;
 
